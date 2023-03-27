@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            background-color: #000;
+        }
+    </style>
+</head>
+<body>
+    
+    <script type="module">
+    import Firework from "../src/Firework.js";
+
+    const fireworks = [];
+
+    setInterval(() => {
+        fireworks.push(
+            new Firework(
+            Math.random() * window.innerWidth,
+            window.innerHeight,
+            0.4 - Math.random() * 0.8,
+            -Math.random() * 2 - 1,
+            `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})`,
+            3
+            ),
+            
+        );
+
+        fireworks.forEach((e, i, o) => {
+            if (e.remainLifeTime < 0) {
+                o.splice(i, 1);
+            }
+        });
+    }, Math.random() * 3000 + 200);
+
+    </script>
+</body>
+</html>
